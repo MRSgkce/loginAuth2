@@ -9,7 +9,7 @@ import UIKit
 import UIKit
 
 class loginViewController: UIViewController {
-    private let headerview = headerView(title: "HOŞGELDİN", subTitle: "lütfen bilgilerini gir")
+    private let headerview = headerView(title: "HOŞGELDİN", subTitle: "lütfen bilgilerini gir",imageName: "giriss")
     private let girisButonu = customButton(title: "Giriş yap", hasBackground :true, fontSize: .big)
     private let yeniKayit = customButton(title: "Henüz yeni misin ? Hemen kayıt ol", hasBackground :false, fontSize: .med)
     private let unuttum = customButton(title: "Şifremi unuttum", hasBackground :false, fontSize: .small)
@@ -100,10 +100,10 @@ class loginViewController: UIViewController {
         yeniKayit.translatesAutoresizingMaskIntoConstraints = false
         unuttum.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            headerview.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            /*headerview.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             headerview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             headerview.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            headerview.heightAnchor.constraint(equalToConstant: 200), // Yükseklik ayarı
+            headerview.heightAnchor.constraint(equalToConstant: 150), // Yükseklik ayarı
 
             
             emailTextField.topAnchor.constraint(equalTo: headerview.bottomAnchor, constant: 20),
@@ -130,7 +130,44 @@ class loginViewController: UIViewController {
             unuttum.topAnchor.constraint(equalTo: yeniKayit.bottomAnchor, constant: 5),
             unuttum.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             unuttum.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
-            unuttum.heightAnchor.constraint(equalToConstant: 44),
-        ])
+            unuttum.heightAnchor.constraint(equalToConstant: 44),*/
+            
+            headerview.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                headerview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                headerview.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                headerview.heightAnchor.constraint(equalToConstant: 150), // Yükseklik ayarı
+
+                // Email TextField'in yukarısındaki mesafeyi artırarak aşağı kaydırıyoruz
+                emailTextField.topAnchor.constraint(equalTo: headerview.bottomAnchor, constant: 40), // 40'tan 60'a çıkardık
+                emailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                emailTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.90), // Genişliği %90'a çıkarıyoruz
+                emailTextField.heightAnchor.constraint(equalToConstant: 60), // Yüksekliği 50'den 60'a çıkarıyoruz
+                   
+                // Password TextField'in yukarısındaki mesafeyi artırarak aşağı kaydırıyoruz
+                passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 40), // 30'dan 40'a çıkardık
+                passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                passwordTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.90), // Genişliği %90'a çıkarıyoruz
+                passwordTextField.heightAnchor.constraint(equalToConstant: 60), // Yüksekliği 50'den 60'a çıkarıyoruz
+                
+                // Giriş butonunun yukarısındaki mesafeyi artırarak aşağı kaydırıyoruz
+                girisButonu.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 40), // 30'dan 40'a çıkardık
+                girisButonu.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                girisButonu.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.90), // Genişliği %90'a çıkarıyoruz
+                girisButonu.heightAnchor.constraint(equalToConstant: 60), // Yüksekliği 50'den 60'a çıkarıyoruz
+                
+                // Yeni kayıt butonunun yukarısındaki mesafeyi artırarak aşağı kaydırıyoruz
+                yeniKayit.topAnchor.constraint(equalTo: girisButonu.bottomAnchor, constant: 30), // 20'den 30'a çıkardık
+                yeniKayit.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                yeniKayit.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.90), // Genişliği %90'a çıkarıyoruz
+                yeniKayit.heightAnchor.constraint(equalToConstant: 40), // Yüksekliği 30'dan 40'a çıkarıyoruz
+                
+                // Unuttum butonunun yukarısındaki mesafeyi artırarak aşağı kaydırıyoruz
+                unuttum.topAnchor.constraint(equalTo: yeniKayit.bottomAnchor, constant: 15), // 10'dan 15'e çıkardık
+                unuttum.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                unuttum.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.90), // Genişliği %90'a çıkarıyoruz
+                unuttum.heightAnchor.constraint(equalToConstant: 50),
+            ])
+
+
     }
 }

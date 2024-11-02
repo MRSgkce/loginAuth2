@@ -5,11 +5,10 @@
 //  Created by Mürşide Gökçe on 1.11.2024.
 //
 import UIKit
-
 class headerView: UIView {
     private let logoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "logo")
+        imageView.image = UIImage(named: "login") // Varsayılan resim
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -33,10 +32,11 @@ class headerView: UIView {
         return label
     }()
     
-    init(title: String, subTitle: String) {
+    init(title: String, subTitle: String, imageName: String) {
         super.init(frame: .zero)
         self.label.text = title
         self.subTitleLabel.text = subTitle
+        self.logoImageView.image = UIImage(named: imageName) // Yeni resmi ayarlıyoruz
         setUp()
     }
     
@@ -52,7 +52,7 @@ class headerView: UIView {
         NSLayoutConstraint.activate([
             logoImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
             logoImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            logoImageView.widthAnchor.constraint(equalToConstant: 80),
+            logoImageView.widthAnchor.constraint(equalToConstant: 90),
             logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor),
 
             label.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 10),

@@ -30,7 +30,7 @@ class homeViewController: UIViewController {
     
     private let imageView2: UIImageView = {
         let imageView22 = UIImageView()
-        imageView22.image = UIImage(named: "dji") // "dji" adıyla resmi yükleyin
+        imageView22.image = UIImage(named: "ana") // "dji" adıyla resmi yükleyin
            imageView22.contentMode = .scaleAspectFill // Görüntüyü tam kaplamak için
            imageView22.translatesAutoresizingMaskIntoConstraints = false // Auto Layout kullanmak için
            imageView22.alpha = 0.6 // Şeffaflık değeri (0.0 ile 1.0 arasında)

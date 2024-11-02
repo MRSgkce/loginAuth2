@@ -10,7 +10,7 @@ import UIKit
 class registerViewController: UIViewController {
     
     
-    private let headerview = headerView(title: "kayıt ol", subTitle: "bilgilerinizi giriniz")
+    private let headerview = headerView(title: "kayıt ol", subTitle: "bilgilerinizi giriniz",imageName: "edit")
     
     private let tekrargirisButonu = customButton(title: "zaten hesabın varsa giriş yap", hasBackground :false, fontSize: .med)
     
@@ -101,6 +101,7 @@ class registerViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             headerview.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            headerview.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             headerview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             headerview.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             headerview.heightAnchor.constraint(equalToConstant: 250), // Yükseklik ayarı

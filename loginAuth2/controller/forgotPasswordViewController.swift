@@ -25,7 +25,7 @@ class forgotPasswordViewController: UIViewController {
     
     
     
-    private let headerview = headerView(title: "Şifremi Unuttum", subTitle: "şifrenizi sıfırlamak için lütfen e-mail adresinizi girin.")
+    private let headerview = headerView(title: "Şifremi Unuttum", subTitle: "şifrenizi sıfırlamak için lütfen e-mail adresinizi girin.", imageName: "forgot")
     
     private let emailField = customTextFields(fieldType: .email)
     
