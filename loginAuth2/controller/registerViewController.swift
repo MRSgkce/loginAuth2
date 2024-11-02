@@ -32,6 +32,7 @@ class registerViewController: UIViewController {
         self.yenikayitim.addTarget(self, action: #selector(yenikayitButonuTapped), for: .touchUpInside)
     }
     
+    
     @objc private func tekrargirisButonuTapped() {
         let vc = loginViewController()
         vc.modalPresentationStyle = .fullScreen
@@ -39,7 +40,40 @@ class registerViewController: UIViewController {
     }
     
     @objc private func yenikayitButonuTapped() {
-        print("yeni kayit oldum")    }
+        let registerRequest = register(username: usernameTextField.text! ,  email: emailTextField.text! ,password: passwordTextField.text! )
+        
+    //usernaname kontrol
+        if !validator.isvalidUsername(for: registerRequest.username){
+            alertManager.showErrorAlertinvalidusername(on: self)
+            return
+        }
+        
+        if !validator.isValidEmail(for: registerRequest.email){
+            alertManager.showErrorAlertinvalidemail(on: self)
+            return
+        }
+        
+        if !validator.isValidPassword(for: registerRequest.password){
+            alertManager.showErrorAlertinvalidpassword(on: self)
+            return
+        }
+        authService.shared.registerUser(with: registerRequest){
+            wasRegistered, error in
+            
+            if let error = error {
+                alertManager.registrationerror(on: self, with: error)
+                return
+            }
+            if wasRegistered {
+                if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+                    sceneDelegate.checkAuthentication()
+                }else{
+                    alertManager.registrationerror(on: self)
+                }
+            }
+        }
+        
+    }
     
     
     

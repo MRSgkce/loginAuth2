@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		445C5CA02CD4F23400031F00 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 445C5C9F2CD4F23400031F00 /* FirebaseAuth */; };
+		445C5CA22CD4F23400031F00 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 445C5CA12CD4F23400031F00 /* FirebaseFirestore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		445C5C842CD4F18300031F00 /* loginAuth2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = loginAuth2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				445C5CA02CD4F23400031F00 /* FirebaseAuth in Frameworks */,
+				445C5CA22CD4F23400031F00 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +85,8 @@
 			);
 			name = loginAuth2;
 			packageProductDependencies = (
+				445C5C9F2CD4F23400031F00 /* FirebaseAuth */,
+				445C5CA12CD4F23400031F00 /* FirebaseFirestore */,
 			);
 			productName = loginAuth2;
 			productReference = 445C5C842CD4F18300031F00 /* loginAuth2.app */;
@@ -107,6 +116,9 @@
 			);
 			mainGroup = 445C5C7B2CD4F18300031F00;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				445C5C9E2CD4F23400031F00 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 445C5C852CD4F18300031F00 /* Products */;
 			projectDirPath = "";
@@ -150,7 +162,6 @@
 				INFOPLIST_FILE = loginAuth2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -178,7 +189,6 @@
 				INFOPLIST_FILE = loginAuth2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -335,6 +345,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		445C5C9E2CD4F23400031F00 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		445C5C9F2CD4F23400031F00 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 445C5C9E2CD4F23400031F00 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		445C5CA12CD4F23400031F00 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 445C5C9E2CD4F23400031F00 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 445C5C7C2CD4F18300031F00 /* Project object */;
 }

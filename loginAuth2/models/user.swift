@@ -7,9 +7,15 @@
 
 import Foundation
 
-class user{
+class useri{
     let username: String
     let email: String
-    let userId: String
+    let userUID: String
     
+    
+    init(username: String, email: String, userUID: String) {
+            self.username = username
+            self.email = email
+            self.userUID = userUID
+        }
 }
