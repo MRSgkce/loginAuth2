@@ -10,11 +10,11 @@ import UIKit
 class registerViewController: UIViewController {
     
     
-    private let headerview = headerView(title: "kayıt ol", subTitle: "bilgileri giriniz")
+    private let headerview = headerView(title: "kayıt ol", subTitle: "bilgilerinizi giriniz")
     
-    private let tekrargirisButonu = customButton(title: "zaten hesabın var giriş yap", hasBackground :false, fontSize: .med)
+    private let tekrargirisButonu = customButton(title: "zaten hesabın varsa giriş yap", hasBackground :false, fontSize: .med)
     
-    private let yenikayitim = customButton(title: "yeni kayit ol", hasBackground :true, fontSize: .big)
+    private let yenikayitim = customButton(title: "Kayıt ol", hasBackground :true, fontSize: .big)
     
 
     
@@ -41,8 +41,7 @@ class registerViewController: UIViewController {
     
     @objc private func yenikayitButonuTapped() {
         let registerRequest = register(username: usernameTextField.text! ,  email: emailTextField.text! ,password: passwordTextField.text! )
-        
-    //usernaname kontrol
+    //usernaname kontrol girilmiş mi ?
         if !validator.isvalidUsername(for: registerRequest.username){
             alertManager.showErrorAlertinvalidusername(on: self)
             return
@@ -74,11 +73,6 @@ class registerViewController: UIViewController {
         }
         
     }
-    
-    
-    
-    
-    
     
     
     override func viewWillAppear(_ animated: Bool) {

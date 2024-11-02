@@ -9,10 +9,10 @@ import UIKit
 import UIKit
 
 class loginViewController: UIViewController {
-    private let headerview = headerView(title: "gir", subTitle: "lutfen giriş yapınız")
-    private let girisButonu = customButton(title: "giris", hasBackground :true, fontSize: .big)
-    private let yeniKayit = customButton(title: "şifren yok mu ? yeni kayit ol", hasBackground :false, fontSize: .med)
-    private let unuttum = customButton(title: "unuttum", hasBackground :false, fontSize: .small)
+    private let headerview = headerView(title: "HOŞGELDİN", subTitle: "lütfen bilgilerini gir")
+    private let girisButonu = customButton(title: "Giriş yap", hasBackground :true, fontSize: .big)
+    private let yeniKayit = customButton(title: "Henüz yeni misin ? Hemen kayıt ol", hasBackground :false, fontSize: .med)
+    private let unuttum = customButton(title: "Şifremi unuttum", hasBackground :false, fontSize: .small)
     
     private let emailTextField = customTextFields(fieldType: .email)
     private let passwordTextField = customTextFields(fieldType: .password)
@@ -56,10 +56,6 @@ class loginViewController: UIViewController {
             }
         }
         
-        
-        
-        
-        
 //        let vc = homeViewController()
 //        vc.modalPresentationStyle = .fullScreen
 //        self.present(vc, animated: false, completion: nil)
@@ -83,11 +79,13 @@ class loginViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
     }
     
+    
+    
     private func setUp() {
         self.view.backgroundColor = .systemBackground
         self.view.addSubview(headerview)
         self.view.addSubview(emailTextField)
-        self.view.addSubview(usernameTextField)
+        //self.view.addSubview(usernameTextField)
        
         self.view.addSubview(passwordTextField)
         self.view.addSubview(girisButonu)
@@ -105,18 +103,14 @@ class loginViewController: UIViewController {
             headerview.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             headerview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             headerview.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            headerview.heightAnchor.constraint(equalToConstant: 250), // Yükseklik ayarı
+            headerview.heightAnchor.constraint(equalToConstant: 200), // Yükseklik ayarı
 
-//            usernameTextField.topAnchor.constraint(equalTo: headerview.bottomAnchor, constant: 50),
-//            usernameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            usernameTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
-//            usernameTextField.heightAnchor.constraint(equalToConstant: 50),
             
             emailTextField.topAnchor.constraint(equalTo: headerview.bottomAnchor, constant: 20),
             emailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             emailTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
             emailTextField.heightAnchor.constraint(equalToConstant: 50),
-//            
+           
             passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 22),
             passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             passwordTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),

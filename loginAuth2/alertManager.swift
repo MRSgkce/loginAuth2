@@ -74,22 +74,23 @@ extension alertManager{
 }
 
 
-//forgot password error
-extension alertManager{
+extension alertManager {
     
-    public static func forgotpassworderror(on vc: UIViewController){
-        
-        self.showBasicAlert(on: vc, title: "şifremi unuttum sayfa hatası", message: nil)
+    // Şifre sıfırlama hatası mesajı göster
+    public static func forgotPasswordError(on vc: UIViewController) {
+        self.showBasicAlert(on: vc, title: "Şifre Sıfırlama Hatası", message: "Bir hata oluştu. Lütfen tekrar deneyin.")
     }
     
-    
-    
-    public func forgotpassworderror(on vc: UIViewController,with error: Error){
-        alertManager.showBasicAlert(on: vc, title: "forgot sayfası error", message: "\(error.localizedDescription)")
-        
+    public static func forgotPasswordError(on vc: UIViewController, with error: Error) {
+        alertManager.showBasicAlert(on: vc, title: "Şifre Sıfırlama Hatası", message: "\(error.localizedDescription)")
     }
     
+    // Başarı mesajı göster
+    public static func showSuccessMessage(on vc: UIViewController, message: String) {
+        showBasicAlert(on: vc, title: "Başarılı", message: message)
+    }
 }
+
 
 //fetching user errors
 extension alertManager{

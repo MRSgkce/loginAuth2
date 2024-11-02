@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class forgotPasswordViewController: UIViewController {
 
@@ -24,7 +25,7 @@ class forgotPasswordViewController: UIViewController {
     
     
     
-    private let headerview = headerView(title: "Şifremi Unuttum", subTitle: "şifrenizi sıfırlamak için lütfen e-mail adresinizi giriniz")
+    private let headerview = headerView(title: "Şifremi Unuttum", subTitle: "şifrenizi sıfırlamak için lütfen e-mail adresinizi girin.")
     
     private let emailField = customTextFields(fieldType: .email)
     
@@ -42,46 +43,70 @@ class forgotPasswordViewController: UIViewController {
         resetPasswordButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            self.headerview.topAnchor.constraint(equalTo: self.view.topAnchor,constant: 30),
-            self.headerview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            self.view.trailingAnchor.constraint(equalTo: self.headerview.trailingAnchor),
-            self.headerview.heightAnchor.constraint(equalToConstant: 100),
-            
-            
-            self.emailField.topAnchor.constraint(equalTo: headerview.bottomAnchor,constant: 11),
-            self.emailField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            self.view.trailingAnchor.constraint(equalTo: self.emailField.trailingAnchor),
-            self.emailField.heightAnchor.constraint(equalToConstant: 55),
-            self.emailField.widthAnchor.constraint(equalTo: view.widthAnchor,multiplier: 0.85),
-            
-            
-            self.resetPasswordButton.topAnchor.constraint(equalTo: emailField.bottomAnchor,constant: 11),
-            self.resetPasswordButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            self.view.trailingAnchor.constraint(equalTo: self.resetPasswordButton.trailingAnchor),
-            self.resetPasswordButton.heightAnchor.constraint(equalToConstant: 55),
-            self.resetPasswordButton.widthAnchor.constraint(equalTo: view.widthAnchor,multiplier: 0.85),
+            self.headerview.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 130),
+                self.headerview.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+                self.headerview.heightAnchor.constraint(equalToConstant: 250),
+                self.headerview.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.85),
+
+                // emailField ayarları
+                self.emailField.topAnchor.constraint(equalTo: headerview.bottomAnchor, constant: 11),
+                self.emailField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+                self.emailField.heightAnchor.constraint(equalToConstant: 55),
+                self.emailField.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.85),
+
+                // resetPasswordButton ayarları
+                self.resetPasswordButton.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: 11),
+                self.resetPasswordButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+                self.resetPasswordButton.heightAnchor.constraint(equalToConstant: 55),
+                self.resetPasswordButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.85),
             ])
     }
     
-    @objc func resetPasswordButtonTapped(){
+//    @objc func resetPasswordButtonTapped(){
+//        let email = emailField.text!
+//        
+//        if !validator.isValidEmail(for: email){
+//            alertManager.showErrorAlertinvalidemail(on: self)
+//            return
+//        }
+//        
+////        authService.shared.forgotPassword(with: email) { [weak self] error in
+////            guard let self =  self else { return }
+////            if let error = error {
+////                alertManager.forgotpassworderror(on: self,with: error)
+////                return
+////                
+////            }
+////            alertManager.show
+////        }
+////        
+//        
+//    }
+    
+    
+    @objc func resetPasswordButtonTapped() {
         let email = emailField.text!
-        
-        if !validator.isValidEmail(for: email){
+
+        // E-posta adresinin doğruluğunu kontrol et
+        if !validator.isValidEmail(for: email) {
             alertManager.showErrorAlertinvalidemail(on: self)
             return
         }
-        
-//        authService.shared.forgotPassword(with: email) { [weak self] error in
-//            guard let self =  self else { return }
-//            if let error = error {
-//                alertManager.forgotpassworderror(on: self,with: error)
-//                return
-//                
-//            }
-//            alertManager.show
-//        }
-//        
-        
+
+        // Firebase üzerinden şifre sıfırlama isteği gönder
+        Auth.auth().sendPasswordReset(withEmail: email) { [weak self] error in
+            guard let self = self else { return }
+
+            // Hata kontrolü
+            if let error = error {
+                alertManager.forgotPasswordError(on: self, with: error)
+                return
+            }
+
+            // Kullanıcıya başarı mesajı göster
+            alertManager.showSuccessMessage(on: self, message: "Şifre sıfırlama e-postası başarıyla gönderildi. Lütfen e-postanızı kontrol edin.")
+        }
     }
+
     
 }

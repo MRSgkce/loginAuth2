@@ -10,10 +10,6 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseCore
 import FirebaseFirestore
-
-
-
-
 class authService {
     public static let shared = authService()
     private init() {}
@@ -44,9 +40,7 @@ class authService {
             
         }
     }
-    
-    
-    
+
     public func signIn(with userRequest: login,completion: @escaping(Error?)->Void ){
         Auth.auth().signIn(withEmail: userRequest.email,password: userRequest.password){
             result, error in
