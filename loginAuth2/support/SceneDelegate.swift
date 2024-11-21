@@ -43,7 +43,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
     
-    public func checkAuthentication(){
+   /* public func checkAuthentication(){
         if Auth.auth().currentUser == nil{
             self.foToController(with: loginViewController())
             
@@ -51,8 +51,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.foToController(with: homeViewController())
         }
     }
+    */
     
-    private func foToController(with viewcontroller : UIViewController){
+    public func checkAuthentication() {
+        if Auth.auth().currentUser == nil {
+            // Kullanıcı oturum açmamışsa login ekranına geçiş yap ve dikey moda ayarla
+            self.foToController(with: loginViewController(), orientation: .portrait)
+        } else {
+            // Kullanıcı oturum açmışsa ana ekrana geçiş yap ve yatay moda ayarla
+            self.foToController(with: homeview2Controller(), orientation: .landscapeLeft)
+        }
+    }
+
+    
+   
+
+    
+    /*private func foToController(with viewcontroller : UIViewController){
         DispatchQueue.main.async {[weak self]
             in UIView.animate(withDuration: 0.25){
                 self?.window?.layer.opacity = 0
@@ -69,6 +84,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
             
         }
+    }*/
+    
+    private func foToController(with viewcontroller: UIViewController, orientation: UIInterfaceOrientation) {
+        DispatchQueue.main.async { [weak self] in
+            UIView.animate(withDuration: 0.25) {
+                self?.window?.layer.opacity = 0
+            } completion: { [weak self] _ in
+                let nav = UINavigationController(rootViewController: viewcontroller)
+                nav.modalPresentationStyle = .fullScreen
+                self?.window?.rootViewController = nav
+                
+                UIView.animate(withDuration: 0.25) { [weak self] in
+                    self?.window?.layer.opacity = 1
+                }
+                
+                // Ekran yönünü belirle
+                UIDevice.current.setValue(orientation.rawValue, forKey: "orientation")
+                UIViewController.attemptRotationToDeviceOrientation()
+            }
+        }
     }
+
 }
 

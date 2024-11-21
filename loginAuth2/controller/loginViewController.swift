@@ -6,13 +6,17 @@
 //
 
 import UIKit
-import UIKit
+import FirebaseAuth
+import FirebaseCore
+import GoogleSignIn
 
 class loginViewController: UIViewController {
     private let headerview = headerView(title: "HOŞGELDİN", subTitle: "lütfen bilgilerini gir",imageName: "giriss")
     private let girisButonu = customButton(title: "Giriş yap", hasBackground :true, fontSize: .big)
     private let yeniKayit = customButton(title: "Henüz yeni misin ? Hemen kayıt ol", hasBackground :false, fontSize: .med)
     private let unuttum = customButton(title: "Şifremi unuttum", hasBackground :false, fontSize: .small)
+    private let emailGirisButonu = customButton(title: "Email ile Giriş Yap", hasBackground: true, fontSize: .big)
+
     
     private let emailTextField = customTextFields(fieldType: .email)
     private let passwordTextField = customTextFields(fieldType: .password)
@@ -27,6 +31,8 @@ class loginViewController: UIViewController {
         self.girisButonu.addTarget(self, action: #selector(girisButonuTapped), for: .touchUpInside)
         self.yeniKayit.addTarget(self, action: #selector(yenikayitButonuTapped), for: .touchUpInside)
         self.unuttum.addTarget(self, action: #selector(unuttumButonuTapped), for: .touchUpInside)
+        // Yeni buton için hedef ekleyin
+         self.emailGirisButonu.addTarget(self, action: #selector(emailGirisButonuTapped), for: .touchUpInside)
     }
     
     @objc private func girisButonuTapped() {
@@ -80,12 +86,55 @@ class loginViewController: UIViewController {
     }
     
     
+    @objc private func emailGirisButonuTapped() {
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+        
+        // Start the sign in flow!
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
+            guard error == nil else { return }
+            
+            guard let user = result?.user, let idToken = user.idToken?.tokenString
+            else { return }
+            self.emailIleGiris(idToken: idToken, accessToken: user.accessToken.tokenString)
+            
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                           accessToken: user.accessToken.tokenString)
+            
+            // ...
+        }
+        
+    }
+    
+    private func emailIleGiris(idToken: String, accessToken: String) {
+        let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                       accessToken: accessToken)
+        Auth.auth().signIn(with: credential){ result, error in
+        guard let _ = result?.user, error == nil else { return }
+            
+           let vc = homeViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+            
+        }
+        
+        
+    }
+    
+    
+
+
+    
     
     private func setUp() {
         self.view.backgroundColor = .systemBackground
         self.view.addSubview(headerview)
         self.view.addSubview(emailTextField)
         //self.view.addSubview(usernameTextField)
+        self.view.addSubview(emailGirisButonu) // Yeni butonu ekliyoruz
        
         self.view.addSubview(passwordTextField)
         self.view.addSubview(girisButonu)
@@ -99,6 +148,9 @@ class loginViewController: UIViewController {
         girisButonu.translatesAutoresizingMaskIntoConstraints = false
         yeniKayit.translatesAutoresizingMaskIntoConstraints = false
         unuttum.translatesAutoresizingMaskIntoConstraints = false
+        emailGirisButonu.translatesAutoresizingMaskIntoConstraints = false
+        
+        
         NSLayoutConstraint.activate([
             /*headerview.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             headerview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -154,18 +206,25 @@ class loginViewController: UIViewController {
                 girisButonu.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                 girisButonu.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.90), // Genişliği %90'a çıkarıyoruz
                 girisButonu.heightAnchor.constraint(equalToConstant: 60), // Yüksekliği 50'den 60'a çıkarıyoruz
+            
+            
+            emailGirisButonu.topAnchor.constraint(equalTo: girisButonu.bottomAnchor, constant: 20),
+                    emailGirisButonu.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                    emailGirisButonu.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.90),
+                    emailGirisButonu.heightAnchor.constraint(equalToConstant: 60),
+                    
                 
                 // Yeni kayıt butonunun yukarısındaki mesafeyi artırarak aşağı kaydırıyoruz
-                yeniKayit.topAnchor.constraint(equalTo: girisButonu.bottomAnchor, constant: 30), // 20'den 30'a çıkardık
+            yeniKayit.topAnchor.constraint(equalTo: emailGirisButonu.bottomAnchor, constant: 30), // 20'den 30'a çıkardık
                 yeniKayit.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                 yeniKayit.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.90), // Genişliği %90'a çıkarıyoruz
-                yeniKayit.heightAnchor.constraint(equalToConstant: 40), // Yüksekliği 30'dan 40'a çıkarıyoruz
+                yeniKayit.heightAnchor.constraint(equalToConstant: 30), // Yüksekliği 30'dan 40'a çıkarıyoruz
                 
                 // Unuttum butonunun yukarısındaki mesafeyi artırarak aşağı kaydırıyoruz
-                unuttum.topAnchor.constraint(equalTo: yeniKayit.bottomAnchor, constant: 15), // 10'dan 15'e çıkardık
+                unuttum.topAnchor.constraint(equalTo: yeniKayit.bottomAnchor, constant: 5), // 10'dan 15'e çıkardık
                 unuttum.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                 unuttum.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.90), // Genişliği %90'a çıkarıyoruz
-                unuttum.heightAnchor.constraint(equalToConstant: 50),
+                unuttum.heightAnchor.constraint(equalToConstant: 40),
             ])
 
 

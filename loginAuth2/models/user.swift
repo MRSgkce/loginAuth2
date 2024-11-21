@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+/*
 class useri{
     let username: String
     let email: String
@@ -18,4 +18,19 @@ class useri{
             self.email = email
             self.userUID = userUID
         }
+}*/
+
+class useri {
+    let username: String
+    let email: String
+    let userUID: String
+    var profileImageUrl: String?  // Profil resmi URL'si
+
+    init(username: String, email: String, userUID: String, profileImageUrl: String? = nil) {
+        self.username = username
+        self.email = email
+        self.userUID = userUID
+        self.profileImageUrl = profileImageUrl
+    }
 }
+
