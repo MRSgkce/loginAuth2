@@ -7,6 +7,8 @@
 
 import UIKit
 import FirebaseCore
+import FirebaseAuth
+import GoogleSignIn
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,8 +20,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         return true
     }
-
+    // URL açma için gerekli
+        func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+            return GIDSignIn.sharedInstance.handle(url)
+        }
     // MARK: UISceneSession Lifecycle
+    
+
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        if Auth.auth().currentUser == nil {
+            // Oturum açılmamışsa yalnızca dikey yönlendirme yap
+            return .portrait
+        } else {
+            // Oturum açılmışsa yalnızca yatay yönlendirme yap
+            return .landscapeLeft
+        }
+    }
+
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
