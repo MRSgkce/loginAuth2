@@ -233,6 +233,9 @@ class homeview2Controller: UIViewController, UICollectionViewDelegate, UICollect
         // Drones butonuna tıklama aksiyonu
                 let dronesButton = buttons[0]  // Drones butonunun index'ine göre seçilir
                 dronesButton.addTarget(self, action: #selector(dronesButtonTapped), for: .touchUpInside)
+        
+        let flightsButton = buttons[1]  // Drones butonunun index'ine göre seçilir
+        flightsButton.addTarget(self, action: #selector(flightsButtonTapped), for: .touchUpInside)
     }
    
     
@@ -292,7 +295,10 @@ class homeview2Controller: UIViewController, UICollectionViewDelegate, UICollect
            let droneViewController = DroneViewController() // Drone view controller'ını oluştur
            navigationController?.pushViewController(droneViewController, animated: true)  // Drone view controller'ına geçiş yap
        }
-    
+    @objc func flightsButtonTapped() {
+        let flightViewController = FlightsViewController() // Drone view controller'ını oluştur
+           navigationController?.pushViewController(flightViewController, animated: true)  // Drone view controller'ına geçiş yap
+       }
     // MARK: - UICollectionViewDataSource
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
