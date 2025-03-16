@@ -10,6 +10,7 @@
 		444C60DD2CDE3E3700DE6EFB /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 444C60DC2CDE3E3700DE6EFB /* FirebaseStorage */; };
 		445C5CA02CD4F23400031F00 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 445C5C9F2CD4F23400031F00 /* FirebaseAuth */; };
 		445C5CA22CD4F23400031F00 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 445C5CA12CD4F23400031F00 /* FirebaseFirestore */; };
+		446418992D7A4A5F0039343C /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 446418982D7A4A5F0039343C /* FirebaseDatabase */; };
 		44BC90E92CE6017500BF6DA5 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 44BC90E82CE6017500BF6DA5 /* GoogleSignIn */; };
 		44BC90EB2CE6017500BF6DA5 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 44BC90EA2CE6017500BF6DA5 /* GoogleSignInSwift */; };
 /* End PBXBuildFile section */
@@ -44,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				446418992D7A4A5F0039343C /* FirebaseDatabase in Frameworks */,
 				44BC90EB2CE6017500BF6DA5 /* GoogleSignInSwift in Frameworks */,
 				445C5CA02CD4F23400031F00 /* FirebaseAuth in Frameworks */,
 				44BC90E92CE6017500BF6DA5 /* GoogleSignIn in Frameworks */,
@@ -104,6 +106,7 @@
 				444C60DC2CDE3E3700DE6EFB /* FirebaseStorage */,
 				44BC90E82CE6017500BF6DA5 /* GoogleSignIn */,
 				44BC90EA2CE6017500BF6DA5 /* GoogleSignInSwift */,
+				446418982D7A4A5F0039343C /* FirebaseDatabase */,
 			);
 			productName = loginAuth2;
 			productReference = 445C5C842CD4F18300031F00 /* loginAuth2.app */;
@@ -398,6 +401,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 445C5C9E2CD4F23400031F00 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		446418982D7A4A5F0039343C /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 445C5C9E2CD4F23400031F00 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
 		};
 		44BC90E82CE6017500BF6DA5 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
