@@ -247,7 +247,7 @@ class FlightsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // Yeni bir detay ekranı oluştur ve seçilen uçuşu ilet
        // let detailVC = FlightDetailViewController()
-        let detailVC = joystickControl()
+        let detailVC = joystickControl2()
         detailVC.flight = selectedFlight
         detailVC.userId = Auth.auth().currentUser?.uid // Kullanıcı ID'sini ilet
         navigationController?.pushViewController(detailVC, animated: true)

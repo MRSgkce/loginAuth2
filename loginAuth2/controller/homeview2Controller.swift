@@ -173,6 +173,7 @@ class homeview2Controller: UIViewController, UICollectionViewDelegate, UICollect
         connectButton.layer.cornerRadius = 10
         connectButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(connectButton)
+        connectButton.addTarget(self, action: #selector(baglaniyor), for: .touchUpInside)
 
         // Auto Layout
         NSLayoutConstraint.activate([
@@ -276,6 +277,11 @@ class homeview2Controller: UIViewController, UICollectionViewDelegate, UICollect
         ])
     }
 
+    @objc private func baglaniyor(){
+        let flightViewController = FlightsViewController() // Drone view controller'ını oluştur
+           navigationController?.pushViewController(flightViewController, animated: true)
+        // Drone view controller'ına geçiş yap
+    }
 
     @objc private func logoutAction() {
         do {
@@ -295,11 +301,18 @@ class homeview2Controller: UIViewController, UICollectionViewDelegate, UICollect
            let droneViewController = DroneViewController() // Drone view controller'ını oluştur
            navigationController?.pushViewController(droneViewController, animated: true)  // Drone view controller'ına geçiş yap
        }
+    
+    
     @objc func flightsButtonTapped() {
         let flightViewController = FlightsViewController() // Drone view controller'ını oluştur
-           navigationController?.pushViewController(flightViewController, animated: true)  // Drone view controller'ına geçiş yap
+           navigationController?.pushViewController(flightViewController, animated: true)
+        // Drone view controller'ına geçiş yap
+        
+        
        }
-    // MARK: - UICollectionViewDataSource
+    
+    
+    
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imageNames.count  // Örneğin 10 hücreyi yatay olarak gösterelim
