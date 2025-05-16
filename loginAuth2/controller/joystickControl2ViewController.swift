@@ -236,7 +236,7 @@ class joystickControl2: UIViewController {
         )
         
         // Uçak ikonunu ekle
-        let iconImage = UIImage(systemName: "airplane.circle.fill") // veya başka bir ikon
+        let iconImage = UIImage(systemName: "airplane.departure") // veya başka bir ikon
         startFlightButton.setImage(iconImage, for: .normal)
         
         // Sadece beyaz ikon gösterimi
@@ -303,18 +303,29 @@ class joystickControl2: UIViewController {
         view.addSubview(toggleViewButton)
     }
     @objc private func toggleViewButtonTapped() {
-        isCameraMode.toggle() // true/false değiştiriyoruz
+        isCameraMode.toggle()
+       
         
         if isCameraMode {
             toggleViewButton.setTitle("📷", for: .normal)
             print("Kamera görünümüne geçildi!")
-            // Buraya kamerayı gösteren kod eklenir
+            
+            // Kamera modunda: arka planı sky.jpg yap
+            if let backgroundImage = UIImage(named: "sky3") {
+                view.backgroundColor = UIColor(patternImage: backgroundImage)
+            } else {
+                print("sky.jpg bulunamadı. Assets'e eklediğinden emin ol.")
+            }
+
         } else {
             toggleViewButton.setTitle("🗺️", for: .normal)
             print("Harita görünümüne geçildi!")
-            // Buraya haritayı gösteren kod eklenir
+
+            // Harita modunda: siyah arka plan
+            view.backgroundColor = .black
         }
     }
+
 
     // MARK: - Uçuş Fonksiyonları
     
